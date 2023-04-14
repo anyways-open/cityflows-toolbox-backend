@@ -1,0 +1,45 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
+
+
+{% block bootstrap3_extra_head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">        
+    
+    {% block extra_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block bootstrap3_title %}
+    {% if title %}
+        {{ title }} - CF-UI-API
+    {% else %}
+        CF-UI-API
+    {% endif %}
+{% endblock %}
+        
+{% block bootstrap3_content %}
+
+    <div class="header">
+        <div class="row" style="padding: 10px 40px;">
+            <div class="col-md-2 logoCont"></div> 
+            <div class="col-md-10" style="text-align: right">
+                <a href="{% url 'logout' %}?next=/">Logout</a> &nbsp;&nbsp;&nbsp; 
+                
+            </div>
+        </div>
+    </div>
+    
+    
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info {% if message.tags %} {{ message.tags }} {% endif %}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="contContainer">
+        {% block content %}{% endblock %}
+    </div>
+
+    
+{% endblock %}

@@ -1,0 +1,36 @@
+version: '2.2'
+services:
+  cf_pg:
+    container_name: cf_pg
+    image: postgres:11.1
+    volumes:
+    - ./outofcontext/pg:/var/lib/postgresql/data
+    environment:
+    - POSTGRES_PASSWORD=PUT_YOUR_DB_PASSWORD_HERE
+    - POSTGRES_USER=cf
+    restart: always
+    networks:
+    - cf_net
+
+  cfback:
+    container_name: cfback
+    build: .
+    volumes:
+    - ./outofcontext/migrations:/app/app/app/migrations
+    environment:
+    - internalURLs=127.0.0.1
+    - apiURL=https://BACKEND_URL_HERE
+    - debugMode=0
+    - CORSWhiteListed=https://FRONTEND_URL_HERE
+    - dbPass=PUT_YOUR_DB_PASSWORD_HERE
+    - dbHost=cf_pg
+    ports:
+    - "3737:80"
+    tty: true
+    stdin_open: true
+    restart: always
+    networks:
+    - cf_net
+
+networks:
+  cf_net:
