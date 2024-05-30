@@ -118,7 +118,7 @@ STATICFILES_DIRS = (
 LOGIN_REDIRECT_URL = '/'
 
 if 'CORSWhiteListed' in os.environ:
-    CORS_ORIGIN_WHITELIST = (os.environ['CORSWhiteListed'],'https://cityflows-api.anyways.eu/','http://127.0.0.1','http://172.21.0.77', 'http://172.21.0.77:3737', 'https://cfback.salnikov.be', 'https://backend.cityflows.imec-apt.be', 'https://demo-backend.cityflows.imec-apt.be')
+    CORS_ORIGIN_WHITELIST = (os.environ['CORSWhiteListed'],'https://cityflows-api.anyways.eu','http://127.0.0.1','http://172.21.0.77', 'http://172.21.0.77:3737', 'https://cfback.salnikov.be', 'https://backend.cityflows.imec-apt.be', 'https://demo-backend.cityflows.imec-apt.be')
 else:
     CORS_ORIGIN_WHITELIST = ('http://127.0.0.1','http://172.21.0.77', 'http://172.21.0.77:3737', 'https://cfback.salnikov.be', 'https://backend.cityflows.imec-apt.be', 'https://demo-backend.cityflows.imec-apt.be')
 CORS_ORIGIN_ALLOW = True
@@ -127,4 +127,4 @@ CORS_ORIGIN_ALLOW_ALL = True
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024*1024*1024
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://gent-backend.cityflows.imec-apt.be', 'https://demo-backend.cityflows.imec-apt.be', 'https://backend.cityflows.imec-apt.be', 'https://cfback.salnikov.be','https://cityflows-api.anyways.eu/']
+CSRF_TRUSTED_ORIGINS = ['https://gent-backend.cityflows.imec-apt.be', 'https://demo-backend.cityflows.imec-apt.be', 'https://backend.cityflows.imec-apt.be', 'https://cfback.salnikov.be','https://cityflows-api.anyways.eu']
