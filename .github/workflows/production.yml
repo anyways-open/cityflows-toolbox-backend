@@ -1,0 +1,26 @@
+name: production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u anywaysbot --password-stdin
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag anywaysopen/cityflows-api:prod --tag anywaysopen/cityflows-api:prod-0.$GITHUB_RUN_NUMBER
+      
+    - name: Publish the image.
+      run: docker push anywaysopen/cityflows-api:prod
+    - name: Publish the image.
+      run: docker push anywaysopen/cityflows-api:prod-0.$GITHUB_RUN_NUMBER
+
+  
